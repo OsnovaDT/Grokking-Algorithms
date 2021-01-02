@@ -1,3 +1,8 @@
+from time import time
+
+from selection_sort import sort_list_by_selection
+
+
 def get_sum_by_cycle(list_):
     sum_ = 0
 
@@ -33,13 +38,45 @@ def get_max_number(list_, max_number=0):
     return get_max_number(list_[1:], max_number)
 
 
-def main():
-    list_ = [1, 2, 3, 4, 5, 6, 10]
+def quick_sort(list_):
+    if len(list_) < 2:
+        return list_
 
-    print(get_sum_by_cycle(list_))
-    print(get_sum_by_recursion(list_))
-    print(get_amount_elements(list_))
-    print(get_max_number(list_))
+    # With this condition the program will work faster
+    if (len(list_) == 2) and (list_[0] > list_[1]):
+        list_[0], list_[1] = list_[1], list_[0]
+
+        return list_
+
+    middle_list_element = list_[len(list_) // 2]
+
+    elements_less_than_middle_element = [
+        element for element in list_ if element < middle_list_element
+    ]
+
+    elements_more_than_middle_element = [
+        element for element in list_ if element > middle_list_element
+    ]
+
+    return quick_sort(elements_less_than_middle_element) + [middle_list_element] + quick_sort(elements_more_than_middle_element)
+
+
+def main():
+    list_ = [i for i in range(1000)]
+
+    # print(get_sum_by_cycle(list_))
+    # print(get_sum_by_recursion(list_))
+    # print(get_amount_elements(list_))
+    # print(get_max_number(list_))
+
+    # Quick sort works faster than sort by selection (simple sort)
+    print('Sort by selection')
+    sort_list_by_selection(list_[::-1])
+
+    print('\nQuick sort')
+    start = time()
+    quick_sort(list_[::-1])
+    print(f'The program was completed in {time() - start} seconds')
 
 
 if __name__ == '__main__':
