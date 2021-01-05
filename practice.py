@@ -88,6 +88,55 @@ def fast_sort(list_):
     return fast_sort(elements_less_than_base_element) + [base_element] + fast_sort(elements_more_than_base_element)
 
 
+class Stack(object):
+    def __init__(self):
+        self.__stack = []
+
+    def add(self, element):
+        self.__stack.append(element)
+
+    def get(self):
+        return self.__stack.pop()
+
+    def get_stack(self):
+        return self.__stack
+
+
+class Cell(object):
+    def __init__(self, value):
+        self.value = value
+        self.next_cell = None
+
+
+class LinkedList(object):
+    def __init__(self):
+        self.first_cell = None
+
+    def add(self, value):
+        new_cell = Cell(value)
+
+        if self.first_cell is None:
+            self.first_cell = new_cell
+
+            return
+
+        first_cell = self.first_cell
+        while first_cell.next_cell:
+            first_cell = first_cell.next_cell
+
+        first_cell.next_cell = new_cell
+
+    def get(self, cell_index):
+        index = 0
+        first_cell = self.first_cell
+
+        while cell_index != index:
+            first_cell = first_cell.next_cell
+            index += 1
+
+        return first_cell.value
+
+
 def main():
     # Search
 
@@ -95,22 +144,22 @@ def main():
     # print(get_element_index(number, list(range(number + 1))))
     # print(binary_search(number, list(range(number + 1))))
 
-    graph = {
-        # 1 level
-        1: [2, 3, 4, 5],
+    # graph = {
+    #     # 1 level
+    #     1: [2, 3, 4, 5],
 
-        # 2 level
-        2: [9, 3],
-        3: [],
-        4: [8],
-        5: [6, 7],
+    #     # 2 level
+    #     2: [9, 3],
+    #     3: [],
+    #     4: [8],
+    #     5: [6, 7],
 
-        # 3 level
-        9: [],
-        8: [],
-        6: [],
-        7: []
-    }
+    #     # 3 level
+    #     9: [],
+    #     8: [],
+    #     6: [],
+    #     7: []
+    # }
 
     # print(find_element_in_graph(8, graph))
 
@@ -123,6 +172,27 @@ def main():
     # start = time()
     # fast_sort(lst)
     # print(time() - start)
+
+    # Structures
+
+    # stack = Stack()
+    # print(stack.get_stack())
+    # stack.add(1)
+    # stack.add(2)
+    # stack.add(3)
+    # print(stack.get_stack())
+    # print(stack.get())
+    # print(stack.get())
+    # print(stack.get())
+    # print(stack.get_stack())
+
+    ll = LinkedList()
+    ll.add(1)
+    ll.add(2)
+    ll.add(3)
+    print(ll.get(0))
+    print(ll.get(1))
+    print(ll.get(2))
 
 
 if __name__ == '__main__':
