@@ -1,6 +1,7 @@
-
 ######################################
 # Practice day 1 - 05.01.2021
+# Practice aim - repeat all algorithms and structures
+# which I have read on this moment
 ######################################
 
 
@@ -11,16 +12,16 @@ from decorators import print_execution_time_of_function
 
 
 @print_execution_time_of_function
-def get_element_index(element_for_search, list_):
+def get_element_index(element, list_):
     for index in range(len(list_)):
-        if list_[index] == element_for_search:
+        if list_[index] == element:
             return index
 
     return 'The element is not in the list'
 
 
 @print_execution_time_of_function
-def binary_search(element_for_search, list_):
+def get_element_index_by_binary_search(element, list_):
     lower_index = 0
     highest_index = len(list_) - 1
 
@@ -28,9 +29,9 @@ def binary_search(element_for_search, list_):
         middle_index = (lower_index + highest_index) // 2
         middle_element = list_[middle_index]
 
-        if element_for_search == middle_element:
+        if element == middle_element:
             return middle_index
-        elif element_for_search > middle_element:
+        elif element > middle_element:
             lower_index = middle_index + 1
         else:
             highest_index = middle_index - 1
@@ -38,7 +39,7 @@ def binary_search(element_for_search, list_):
     return 'The element is not in the list'
 
 
-def find_element_in_graph(element, graph):
+def is_element_in_graph(element, graph):
     checked_elements = []
 
     elements = deque()
@@ -47,16 +48,20 @@ def find_element_in_graph(element, graph):
     while elements:
         current_element = elements.popleft()
 
+        # If current_element have been checked already
         if current_element in checked_elements:
             continue
 
         checked_elements.append(current_element)
 
-        print(current_element)
+        # The element was found
         if current_element == element:
-            return 'The element found'
+            return True
 
+        # If element was not found
         elements += graph[current_element]
+
+    return False
 
 
 @print_execution_time_of_function
@@ -72,9 +77,11 @@ def sort_list_by_selection(list_):
     return sorted_list
 
 
-def fast_sort(list_):
+def sort_list_by_quick_sort(list_):
     if len(list_) < 2:
         return list_
+
+    # Base element is middle element
     base_element = list_[len(list_) // 2]
 
     elements_less_than_base_element = [
@@ -85,7 +92,9 @@ def fast_sort(list_):
         element for element in list_ if element > base_element
     ]
 
-    return fast_sort(elements_less_than_base_element) + [base_element] + fast_sort(elements_more_than_base_element)
+    return sort_list_by_quick_sort(elements_less_than_base_element) + \
+        [base_element] + \
+        sort_list_by_quick_sort(elements_more_than_base_element)
 
 
 class Stack(object):
@@ -97,9 +106,6 @@ class Stack(object):
 
     def get(self):
         return self.__stack.pop()
-
-    def get_stack(self):
-        return self.__stack
 
 
 class Cell(object):
@@ -120,19 +126,23 @@ class LinkedList(object):
 
             return
 
-        first_cell = self.first_cell
-        while first_cell.next_cell:
-            first_cell = first_cell.next_cell
+        # Go to last cell
+        last_cell = self.first_cell
 
-        first_cell.next_cell = new_cell
+        while last_cell.next_cell:
+            last_cell = last_cell.next_cell
+
+        last_cell.next_cell = new_cell
 
     def get(self, cell_index):
-        index = 0
+        index_for_iteration = 0
         first_cell = self.first_cell
 
-        while cell_index != index:
+        while cell_index != index_for_iteration:
+            # Go to next cell
             first_cell = first_cell.next_cell
-            index += 1
+
+            index_for_iteration += 1
 
         return first_cell.value
 
@@ -140,51 +150,48 @@ class LinkedList(object):
 def main():
     # Search
 
-    # number = 50_000_000
-    # print(get_element_index(number, list(range(number + 1))))
-    # print(binary_search(number, list(range(number + 1))))
+    number = 50_000_000
+    print(get_element_index(number, list(range(number + 1))))
+    print(get_element_index_by_binary_search(number, list(range(number + 1))))
 
-    # graph = {
-    #     # 1 level
-    #     1: [2, 3, 4, 5],
+    graph = {
+        # 1 level
+        1: [2, 3, 4, 5],
 
-    #     # 2 level
-    #     2: [9, 3],
-    #     3: [],
-    #     4: [8],
-    #     5: [6, 7],
+        # 2 level
+        2: [9, 3],
+        3: [],
+        4: [8],
+        5: [6, 7],
 
-    #     # 3 level
-    #     9: [],
-    #     8: [],
-    #     6: [],
-    #     7: []
-    # }
+        # 3 level
+        9: [],
+        8: [],
+        6: [],
+        7: []
+    }
 
-    # print(find_element_in_graph(8, graph))
+    print(is_element_in_graph(8, graph))
 
     # Sort
 
-    # number = 1_000
-    # lst = list(range(number))[::-1]
-    # sort_list_by_selection(lst)
+    number = 1_000
+    lst = list(range(number))[::-1]
+    sort_list_by_selection(lst)
 
-    # start = time()
-    # fast_sort(lst)
-    # print(time() - start)
+    start = time()
+    sort_list_by_quick_sort(lst)
+    print(time() - start)
 
     # Structures
 
-    # stack = Stack()
-    # print(stack.get_stack())
-    # stack.add(1)
-    # stack.add(2)
-    # stack.add(3)
-    # print(stack.get_stack())
-    # print(stack.get())
-    # print(stack.get())
-    # print(stack.get())
-    # print(stack.get_stack())
+    stack = Stack()
+    stack.add(1)
+    stack.add(2)
+    stack.add(3)
+    print(stack.get())
+    print(stack.get())
+    print(stack.get())
 
     ll = LinkedList()
     ll.add(1)
