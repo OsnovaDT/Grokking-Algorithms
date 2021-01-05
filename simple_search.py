@@ -9,7 +9,7 @@ def get_element_index(element, list_for_search):
 
 
 if __name__ == '__main__':
-    number = 100_000_00
+    number = 10_000_000
     list_for_search = list(range(1, number + 1))
 
     print(get_element_index(number, list_for_search))
