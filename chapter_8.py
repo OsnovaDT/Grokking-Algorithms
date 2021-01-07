@@ -1,5 +1,5 @@
 def get_required_stations(states, all_stations):
-    required_stations = set()
+    required_stations = []
 
     station_with_max_state_coverage = None
 
@@ -8,10 +8,10 @@ def get_required_stations(states, all_stations):
         # Find station with max states cover
         min_states_amount_after_station_add = len(states)
 
-        for station in all_stations:
-            if len(states - all_stations[station]) < min_states_amount_after_station_add:
+        for station, states_for_station in all_stations.items():
+            if len(states - states_for_station) < min_states_amount_after_station_add:
                 min_states_amount_after_station_add = len(
-                    states - all_stations[station]
+                    states - states_for_station
                 )
                 station_with_max_state_coverage = station
 
@@ -20,7 +20,7 @@ def get_required_stations(states, all_stations):
 
         # Move station from all_stations to required_stations
         all_stations.pop(station_with_max_state_coverage)
-        required_stations.add(station_with_max_state_coverage)
+        required_stations.append(station_with_max_state_coverage)
 
     return required_stations
 
