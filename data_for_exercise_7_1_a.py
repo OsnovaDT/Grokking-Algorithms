@@ -1,3 +1,5 @@
+'''Some data for chapter 7, task 7.1 (A)'''
+
 INFINITY = float('inf')
 
 graph = {

@@ -1,3 +1,6 @@
+'''Practice in the writing of algorithms'''
+
+
 ######################################
 # Practice day 1 - 05.01.2021
 # Practice aim - repeat all algorithms and structures
@@ -13,7 +16,9 @@ from decorators import print_execution_time_of_function
 
 @print_execution_time_of_function
 def get_element_index(element, list_):
-    for index in range(len(list_)):
+    '''Get element index from list'''
+
+    for index, _ in enumerate(list_):
         if list_[index] == element:
             return index
 
@@ -22,6 +27,8 @@ def get_element_index(element, list_):
 
 @print_execution_time_of_function
 def get_element_index_by_binary_search(element, list_):
+    '''Get element index from list by binary search'''
+
     lower_index = 0
     highest_index = len(list_) - 1
 
@@ -40,6 +47,8 @@ def get_element_index_by_binary_search(element, list_):
 
 
 def is_element_in_graph(element, graph):
+    '''Is element in the graph'''
+
     checked_elements = []
 
     elements = deque()
@@ -66,6 +75,8 @@ def is_element_in_graph(element, graph):
 
 @print_execution_time_of_function
 def sort_list_by_selection(list_):
+    '''Sort list by selection'''
+
     sorted_list = []
 
     while list_:
@@ -78,6 +89,8 @@ def sort_list_by_selection(list_):
 
 
 def sort_list_by_quick_sort(list_):
+    '''Sort list by quick sort'''
+
     if len(list_) < 2:
         return list_
 
@@ -98,27 +111,39 @@ def sort_list_by_quick_sort(list_):
 
 
 class Stack(object):
+    '''Stack class'''
+
     def __init__(self):
         self.__stack = []
 
     def add(self, element):
+        '''Add element to end of stack'''
+
         self.__stack.append(element)
 
     def get(self):
+        '''Get element from end of stack'''
+
         return self.__stack.pop()
 
 
 class Cell(object):
+    '''Cell class for linked list'''
+
     def __init__(self, value):
         self.value = value
         self.next_cell = None
 
 
 class LinkedList(object):
+    '''Linked list class'''
+
     def __init__(self):
         self.first_cell = None
 
     def add(self, value):
+        '''Add element to end of linked list'''
+
         new_cell = Cell(value)
 
         if self.first_cell is None:
@@ -135,6 +160,8 @@ class LinkedList(object):
         last_cell.next_cell = new_cell
 
     def get(self, cell_index):
+        '''Get element from list by index'''
+
         index_for_iteration = 0
         first_cell = self.first_cell
 
@@ -148,7 +175,9 @@ class LinkedList(object):
 
 
 def main():
-    # Search
+    '''Run functions for all algorithms and create classes objects'''
+
+    # Search algorithms
 
     number = 50_000_000
     print(get_element_index(number, list(range(number + 1))))
@@ -179,27 +208,29 @@ def main():
     lst = list(range(number))[::-1]
     sort_list_by_selection(lst)
 
-    start = time()
+    start_time = time()
     sort_list_by_quick_sort(lst)
-    print(time() - start)
+    print(time() - start_time)
 
-    # Structures
+    # Classes
 
     stack = Stack()
     stack.add(1)
     stack.add(2)
     stack.add(3)
+
     print(stack.get())
     print(stack.get())
     print(stack.get())
 
-    ll = LinkedList()
-    ll.add(1)
-    ll.add(2)
-    ll.add(3)
-    print(ll.get(0))
-    print(ll.get(1))
-    print(ll.get(2))
+    linked_list = LinkedList()
+    linked_list.add(1)
+    linked_list.add(2)
+    linked_list.add(3)
+
+    print(linked_list.get(0))
+    print(linked_list.get(1))
+    print(linked_list.get(2))
 
 
 if __name__ == '__main__':

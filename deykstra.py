@@ -1,11 +1,17 @@
-# from data_for_exercise_7_1_A import graph, costs, parents
-# from data_for_exercise_7_1_B import graph, costs, parents
-from data_for_exercise_7_1_C import graph, costs, parents
+'''Code for deykstra algorithm from chapter 7'''
+
+# If you want to change initial data you can uncomment one line from lines below
+
+# from data_for_exercise_7_1_a import graph, costs, parents
+# from data_for_exercise_7_1_b import graph, costs, parents
+# from data_for_exercise_7_1_c import graph, costs, parents
 
 INFINITY = float('inf')
 
 
 def get_node_nearest_to_start_node(costs, processed_nodes):
+    '''Get node nearest to start (first level) node'''
+
     # Sort costs by values
     sorted_costs = sorted(
         list(costs.items()),
@@ -29,7 +35,9 @@ def get_node_nearest_to_start_node(costs, processed_nodes):
     return node_nearest_to_start_node
 
 
-def run_deykstra_algorithm(graph, costs, parents, processed_nodes):
+def get_min_path_to_finish_node(graph, costs, parents, processed_nodes):
+    '''Get min path to finish node by Deykstra algorithm'''
+
     # While not all nodes are processed yet
     while len(processed_nodes) != len(graph) - 1:
         # Get name and weight for node, nearest to start node
@@ -53,43 +61,49 @@ def run_deykstra_algorithm(graph, costs, parents, processed_nodes):
 
 
 def main():
+    '''Run function get_min_path_to_finish_node'''
+
     # The main task for chapter 7
 
-    # graph = {
-    #     # Start point
-    #     'Start': {
-    #         'A': 6,
-    #         'B': 2
-    #     },
+    # Comment this dictionaries if you use outside data
+    graph = {
+        # Start point
+        'Start': {
+            'A': 6,
+            'B': 2
+        },
 
-    #     # Point A
-    #     'A': {'Finish': 1},
+        # Point A
+        'A': {'Finish': 1},
 
-    #     # Point B
-    #     'B': {
-    #         'A': 3,
-    #         'Finish': 5
-    #     },
+        # Point B
+        'B': {
+            'A': 3,
+            'Finish': 5
+        },
 
-    #     # Finish point
-    #     'Finish': {},
-    # }
+        # Finish point
+        'Finish': {},
+    }
 
-    # costs = {
-    #     'A': 6,
-    #     'B': 2,
-    #     'Finish': INFINITY,
-    # }
+    costs = {
+        'A': 6,
+        'B': 2,
+        'Finish': INFINITY,
+    }
 
-    # parents = {
-    #     'A': 'Start',
-    #     'B': 'Start',
-    #     'Finish': None,
-    # }
+    parents = {
+        'A': 'Start',
+        'B': 'Start',
+        'Finish': None,
+    }
 
     processed_nodes = []
 
-    run_deykstra_algorithm(graph, costs, parents, processed_nodes)
+    get_min_path_to_finish_node(
+        graph, costs,
+        parents, processed_nodes
+    )
     print(costs['Finish'])
     print(parents)
 

@@ -1,3 +1,6 @@
+'''Code for stack class'''
+
+
 class Stack(object):
     ''' Stack works by FIFO principle
 
@@ -21,12 +24,20 @@ class Stack(object):
         return self.__stack.pop()
 
 
-stack = Stack()
-stack.add(1)
-stack.add(2)
-stack.add(3)
+def main():
+    '''Run methods for stack class'''
 
-print(stack.get())  # 3
-print(stack.get())  # 2
-print(stack.get())  # 1
-print(stack.get())  # The stack is empty
+    stack = Stack()
+
+    stack.add(1)
+    stack.add(2)
+    stack.add(3)
+
+    print(stack.get())  # 3
+    print(stack.get())  # 2
+    print(stack.get())  # 1
+    print(stack.get())  # The stack is empty
+
+
+if __name__ == '__main__':
+    main()

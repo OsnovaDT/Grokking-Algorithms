@@ -1,17 +1,26 @@
+'''Code for chapter 6'''
+
+
 from collections import deque
 
 
 # For ordered friends_network
 def find_mango_seller_v1(friends_network, mango_seller):
+    '''The first version for function that find mango seller'''
+
     for friend in friends_network:
         friends_for_current_friend = friends_network[friend]
 
         if mango_seller in friends_for_current_friend:
             return 'Found'
 
+    return 'Was not found'
+
 
 # For ordered or NOT ordered friends_network
 def find_mango_seller_v2(friends_network):
+    '''The second version for function that find mango seller'''
+
     checked_friends = []
 
     # We also can use Queue here, but code will be more long
@@ -40,10 +49,14 @@ def find_mango_seller_v2(friends_network):
 
 
 def is_mango_seller(person):
+    '''Is person mango seller'''
+
     return person == 'Tom'
 
 
 def main():
+    '''Run all functions for chapter 6'''
+
     friends_network = {
         # The first level
         'Me': ['Bob', 'Alice', 'Claire'],
@@ -60,6 +73,7 @@ def main():
         'Jonny': [],
     }
 
+    print(find_mango_seller_v1(friends_network, 'Tom'))
     print(find_mango_seller_v2(friends_network))
 
 

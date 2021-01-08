@@ -1,14 +1,23 @@
+'''Linked list for chapter 2'''
+
+
 class Cell(object):
+    '''Class for cell for linked list's elements'''
+
     def __init__(self, value):
         self.value = value
         self.next_cell = None
 
 
 class LinkedList(object):
+    '''Class for linked list'''
+
     def __init__(self):
         self.first_cell = None
 
     def add(self, value):
+        '''Add elements to end of the linked list'''
+
         new_cell = Cell(value)
 
         if self.first_cell is None:
@@ -24,7 +33,9 @@ class LinkedList(object):
         last_cell.next_cell = new_cell
 
     def get(self, cell_index):
-        # Go to cell with index = cell_index
+        '''Get element from linked list by index'''
+
+        # Go to cell with cell_index
         last_cell = self.first_cell
 
         temp_index = 0
@@ -38,12 +49,19 @@ class LinkedList(object):
             return last_cell.value
 
 
-linked_list = LinkedList()
+def main():
+    '''Test how linked list works'''
 
-linked_list.add(1)
-linked_list.add(2)
-linked_list.add(3)
+    linked_list = LinkedList()
 
-print(linked_list.get(0))
-print(linked_list.get(1))
-print(linked_list.get(2))
+    linked_list.add(1)
+    linked_list.add(2)
+    linked_list.add(3)
+
+    print(linked_list.get(0))
+    print(linked_list.get(1))
+    print(linked_list.get(2))
+
+
+if __name__ == '__main__':
+    main()

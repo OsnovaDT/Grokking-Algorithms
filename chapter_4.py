@@ -1,9 +1,13 @@
+'''Code for chapter 4'''
+
 from time import time
 
 from selection_sort import sort_list_by_selection
 
 
 def get_sum_by_cycle(list_):
+    '''Get sum of elements by cycle'''
+
     sum_ = 0
 
     for element in list_:
@@ -13,6 +17,8 @@ def get_sum_by_cycle(list_):
 
 
 def get_sum_by_recursion(list_, sum_=0):
+    '''Get sum of elements by recursion'''
+
     if len(list_) == 1:
         return sum_ + list_[0]
 
@@ -22,6 +28,8 @@ def get_sum_by_recursion(list_, sum_=0):
 
 
 def get_amount_elements(list_, amount=0):
+    '''Get amount of elements in list'''
+
     if list_ == []:
         return amount
 
@@ -29,6 +37,8 @@ def get_amount_elements(list_, amount=0):
 
 
 def get_max_number(list_, max_number=0):
+    '''Get max number from list'''
+
     if list_ == []:
         return max_number
 
@@ -39,6 +49,8 @@ def get_max_number(list_, max_number=0):
 
 
 def quick_sort(list_):
+    '''Sort list by quick sort'''
+
     if len(list_) < 2:
         return list_
 
@@ -58,16 +70,20 @@ def quick_sort(list_):
         element for element in list_ if element > middle_list_element
     ]
 
-    return quick_sort(elements_less_than_middle_element) + [middle_list_element] + quick_sort(elements_more_than_middle_element)
+    return quick_sort(elements_less_than_middle_element) + \
+        [middle_list_element] + \
+        quick_sort(elements_more_than_middle_element)
 
 
 def main():
-    list_ = [i for i in range(1000)]
+    '''Run all functions for chapter 4'''
 
-    # print(get_sum_by_cycle(list_))
-    # print(get_sum_by_recursion(list_))
-    # print(get_amount_elements(list_))
-    # print(get_max_number(list_))
+    list_ = list(range(100))
+
+    print(get_sum_by_cycle(list_))
+    print(get_sum_by_recursion(list_))
+    print(get_amount_elements(list_))
+    print(get_max_number(list_))
 
     # Quick sort works faster than sort by selection (simple sort)
     print('Sort by selection')

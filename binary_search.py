@@ -1,9 +1,13 @@
+'''Binary search for chapter 1'''
+
 from decorators import print_execution_time_of_function
 
 
 # Binary search
 @print_execution_time_of_function
 def get_element_index(element, list_for_search):
+    '''Get element index by binary search'''
+
     lower_index = 0
     upper_index = len(list_for_search) - 1
 
@@ -20,6 +24,7 @@ def get_element_index(element, list_for_search):
 
 
 def main():
+    '''Run function get_element_index'''
     number = 50_000_000
     list_for_search = list(range(1, number + 1))
     print(get_element_index(number, list_for_search))

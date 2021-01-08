@@ -1,4 +1,9 @@
+'''Code for chapter 8'''
+
+
 def get_required_stations(states, all_stations):
+    '''Get required stations for cover all states'''
+
     required_stations = []
 
     station_with_max_state_coverage = None
@@ -26,6 +31,8 @@ def get_required_stations(states, all_stations):
 
 
 def main():
+    '''Run get_required_stations function'''
+
     states = {
         'mt', 'wa', 'or', 'id',
         'nv', 'ut', 'ca', 'az'

@@ -18,6 +18,7 @@ def print_prices_matrix(prices, subjects_names):
     ))
 
     # Matrix elements
+    print(prices)
     for string_index, string in enumerate(prices):
         indent = max_len_for_name_in_string_names - \
             len(subjects_names[string_index])
@@ -116,9 +117,10 @@ def main():
 
     max_backpack_size = 4
 
+    # It'll works if change last string for function get_max_price_for_grab
     # print_prices_matrix(
-    # get_max_price_for_grab(things_for_grab, max_backpack_size),
-    # [name for name in things_for_grab]
+    #     get_max_price_for_grab(things_for_grab, max_backpack_size),
+    #     [name for name in things_for_grab]
     # )
 
     print(get_max_price_for_grab(things_for_grab, max_backpack_size))

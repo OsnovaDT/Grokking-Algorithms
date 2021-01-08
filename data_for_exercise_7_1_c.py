@@ -1,24 +1,29 @@
+'''Some data for chapter 7, task 7.1 (C)'''
+
+
 INFINITY = float('inf')
 
 graph = {
     # Start point
     'Start': {
-        'A': 10,
+        'A': 2,
+        'B': 2,
     },
 
     # Point A
     'A': {
-        'C': 20,
+        'B': 2,
     },
 
     # Point B
     'B': {
-        'A': 1,
+        'C': 2,
+        'Finish': 2,
     },
 
     'C': {
-        'B': 1,
-        'Finish': 30
+        'A': -1,
+        'Finish': 2
     },
 
     # Finish point
@@ -26,16 +31,15 @@ graph = {
 }
 
 costs = {
-    'A': 10,
-    'B': INFINITY,
+    'A': 2,
+    'B': 2,
     'C': INFINITY,
     'Finish': INFINITY,
 }
 
 parents = {
     'A': 'Start',
-    'B': None,
+    'B': 'Start',
     'C': None,
-    'D': None,
     'Finish': None,
 }

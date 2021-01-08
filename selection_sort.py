@@ -1,3 +1,5 @@
+'''Selection sort from chapter 2'''
+
 from random import randint
 
 from decorators import print_execution_time_of_function
@@ -6,6 +8,8 @@ my_list = [randint(1, 100) for _ in range(10)]
 
 
 def get_minimum_value_from_list(initial_list):
+    '''Get minimum value from the list'''
+
     minimum_value = initial_list[0]
 
     for value in initial_list:
@@ -17,6 +21,8 @@ def get_minimum_value_from_list(initial_list):
 
 @print_execution_time_of_function
 def sort_list_by_selection(initial_list):
+    '''Sort list by selection'''
+
     final_list = []
 
     for _ in range(len(initial_list)):
@@ -29,6 +35,12 @@ def sort_list_by_selection(initial_list):
     return final_list
 
 
-if __name__ == '__main__':
+def main():
+    '''Run sort_list_by_selection function'''
+
     print(my_list)
     print(sort_list_by_selection(my_list))
+
+
+if __name__ == '__main__':
+    main()
