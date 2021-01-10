@@ -112,8 +112,72 @@ def go_around_the_tree_in_depth(tree, starting_node='A'):
         )
 
 
+class Stack():
+    '''Simple stack'''
+
+    def __init__(self):
+        self.__stack = []
+
+    def add(self, value):
+        '''Add value to the end of stack'''
+
+        self.__stack.append(value)
+
+    def get(self):
+        '''Get a value from the end of stack'''
+
+        return self.__stack.pop()
+
+
+class Cell():
+    '''Cell for save value for linked list'''
+
+    def __init__(self, value):
+        self.value = value
+        self.next_cell = None
+
+
+class LinkedList():
+    '''Linked list'''
+
+    def __init__(self):
+        self.first_cell = None
+
+    def add(self, value):
+        '''Add new cell with value to linked list'''
+
+        new_cell = Cell(value)
+
+        # If the linked list is empty
+        if self.first_cell is None:
+            self.first_cell = new_cell
+
+            return
+
+        first_cell = self.first_cell
+
+        while first_cell.next_cell:
+            # Go to next cell
+            first_cell = first_cell.next_cell
+
+        first_cell.next_cell = new_cell
+
+    def get(self, cell_index):
+        '''Get cell by index'''
+
+        index = 0
+
+        first_cell = self.first_cell
+
+        while first_cell.next_cell and (index != cell_index):
+            first_cell = first_cell.next_cell
+            index += 1
+
+        return first_cell.value
+
+
 def main():
-    '''Run all functions for test'''
+    '''Run all functions and classe's functions'''
 
     # Simple and binary search
 
@@ -164,6 +228,34 @@ def main():
     # Traversing a tree in depth
 
     go_around_the_tree_in_depth(tree)
+
+    print()
+
+    # Structures
+
+    # Stack
+
+    stack = Stack()
+
+    stack.add(1)
+    stack.add(2)
+    stack.add(3)
+
+    print(stack.get())
+    print(stack.get())
+    print(stack.get())
+
+    # Linked list
+
+    linked_list = LinkedList()
+
+    linked_list.add(1)
+    linked_list.add(2)
+    linked_list.add(3)
+
+    print(linked_list.get(0))
+    print(linked_list.get(1))
+    print(linked_list.get(2))
 
 
 if __name__ == '__main__':
